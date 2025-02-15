@@ -1,20 +1,19 @@
 @php
     $containerNav = $containerNav ?? 'container-fluid';
     $navbarDetached = $navbarDetached ?? '';
-
 @endphp
 
 <!-- Navbar -->
 @if (isset($navbarDetached) && $navbarDetached == 'navbar-detached')
-    <nav class="layout-navbar {{ $containerNav }} navbar navbar-expand-xl {{ $navbarDetached }} align-items-center bg-navbar-theme"
+    <nav class="layout-navbar {{ $containerNav }} navbar navbar-expand-xl {{ $navbarDetached }} align-items-center bg-navbar-theme navbar-dark"
         id="layout-navbar">
 @endif
 @if (isset($navbarDetached) && $navbarDetached == '')
-    <nav class="layout-navbar navbar navbar-expand-xl align-items-center bg-navbar-theme" id="layout-navbar">
+    <nav class="layout-navbar navbar navbar-expand-xl align-items-center bg-navbar-theme navbar-dark" id="layout-navbar">
         <div class="{{ $containerNav }}">
 @endif
 
-<!--  Brand demo (display only for navbar-full and hide on below xl) -->
+<!-- Brand demo (display only for navbar-full and hide on below xl) -->
 @if (isset($navbarFull))
     <div class="navbar-brand app-brand demo d-none d-xl-flex py-0 me-4">
         <a href="{{ url('/') }}" class="app-brand-link gap-2">
@@ -24,7 +23,7 @@
     </div>
 @endif
 
-<!-- ! Not required for layout-without-menu -->
+<!-- Not required for layout-without-menu -->
 @if (!isset($navbarHideToggle))
     <div
         class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0{{ isset($menuHorizontal) ? ' d-xl-none ' : '' }} {{ isset($contentNavbar) ? ' d-xl-none ' : '' }}">
@@ -39,21 +38,21 @@
     <div class="navbar-nav align-items-center">
         <div class="nav-item d-flex align-items-center">
             <i class="bx bx-search fs-4 lh-0"></i>
-            <input type="text" class="form-control border-0 shadow-none ps-1 ps-sm-2" placeholder="Search..."
-                aria-label="Search...">
+            <input type="text" class="form-control border-0 shadow-none ps-1 ps-sm-2 navbar-dark-search"
+                placeholder="Search..." aria-label="Search...">
         </div>
     </div>
     <!-- /Search -->
     <ul class="navbar-nav flex-row align-items-center ms-auto">
 
-        <!-- Place this tag where you want the button to render. -->
+        <!-- GitHub Button -->
         <li class="nav-item lh-1 me-3">
             <a class="github-button" href="https://github.com/themeselection/sneat-html-laravel-admin-template-free"
                 data-icon="octicon-star" data-size="large" data-show-count="true"
                 aria-label="Star themeselection/sneat-html-laravel-admin-template-free on GitHub">Star</a>
         </li>
 
-        <!-- User -->
+        <!-- User Dropdown -->
         <li class="nav-item navbar-dropdown dropdown-user dropdown">
             <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                 <div class="avatar avatar-online">
@@ -77,9 +76,7 @@
                         </div>
                     </a>
                 </li>
-                <li>
-                    <div class="dropdown-divider"></div>
-                </li>
+                <li><div class="dropdown-divider"></div></li>
                 <li>
                     <a class="dropdown-item" href="javascript:void(0);">
                         <i class="bx bx-user me-2"></i>
@@ -97,14 +94,11 @@
                         <span class="d-flex align-items-center align-middle">
                             <i class="flex-shrink-0 bx bx-credit-card me-2 pe-1"></i>
                             <span class="flex-grow-1 align-middle">Billing</span>
-                            <span
-                                class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
+                            <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
                         </span>
                     </a>
                 </li>
-                <li>
-                    <div class="dropdown-divider"></div>
-                </li>
+                <li><div class="dropdown-divider"></div></li>
                 <li>
                     <a class="dropdown-item" href="{{ route('auth-logout') }}">
                         <i class='bx bx-power-off me-2'></i>
