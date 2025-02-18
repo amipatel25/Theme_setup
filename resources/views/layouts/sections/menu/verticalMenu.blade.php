@@ -12,19 +12,36 @@
     <style>
         /* Sidebar Toggle */
         .menu-hidden {
-            transform: translateX(-250px);
+            transform: translateX(-280px);
             transition: transform 0.3s ease-in-out;
         }
 
         #layout-menu {
+            width: 280px;
+            /* Increase width as needed */
+            max-width: 280px;
+            /* Prevents it from exceeding this width */
             transition: transform 0.3s ease-in-out;
+        }
+
+        #layout-menu .menu-item.active .menu-link,
+        #layout-menu .menu-item:has(.menu-item.active) {
+            background-color: #f1f3fd !important;
+            color: #ffffff !important;
+        }
+
+        /* Sidebar Background Color when Success Message is Shown */
+        .sidebar-inactive {
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Light black background */
+            transition: background-color 0.3s ease-in-out;
         }
 
         /* Sidebar Toggle Button */
         #sidebar-toggle {
             position: absolute;
             top: 15px;
-            right: -20px;
+            right: -40px;
             width: 40px;
             height: 40px;
             background-color: #696cff;
@@ -46,6 +63,13 @@
         #sidebar-toggle:hover {
             background-color: #5a5ed6;
         }
+
+        .app-brand-logo img {
+            margin: 0;
+            padding: 0;
+            display: block;
+            /* Ensure there is no space below the image */
+        }
     </style>
 </head>
 
@@ -55,10 +79,11 @@
     <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
         <div class="app-brand demo">
             <a href="{{ url('/') }}" class="app-brand-link">
-                <span class="app-brand-logo demo">
-                    @include('_partials.macros', ['width' => 25, 'withbg' => 'var(--bs-primary)'])
+                <span class="app-brand-logo demo" style="margin-left: 0;">
+                    <img src="{{ asset('assets/img/logo_main.png') }}" alt="Brand Logo" width="40" height="35">
                 </span>
-                <span class="app-brand-text demo menu-text fw-bold ms-2">
+
+                <span class="app-brand-text demo menu-text fw-bold ms-2" style="text-transform: capitalize;">
                     {{ config('variables.templateName') }}
                 </span>
             </a>
@@ -113,7 +138,8 @@
 
             function toggleSidebar() {
                 sidebar.classList.toggle("menu-hidden");
-                localStorage.setItem("sidebarState", sidebar.classList.contains("menu-hidden") ? "hidden" : "expanded");
+                localStorage.setItem("sidebarState", sidebar.classList.contains("menu-hidden") ? "hidden" :
+                    "expanded");
             }
 
             sidebarToggle.addEventListener("click", toggleSidebar);
@@ -126,12 +152,17 @@
             // Show success message if exists
             @if (session('success'))
                 Swal.fire({
-                    icon: 'success',
-                    title: 'Success!',
+                    title: "Success!",
                     text: "{{ session('success') }}",
-                    allowOutsideClick: false,
-                    confirmButtonColor: '#3085d6',
-                    confirmButtonText: 'OK'
+                    icon: "success",
+                    allowOutsideClick: false, // Prevents closing when clicking outside
+                    allowEscapeKey: false, // Prevents closing with Escape key
+                    didOpen: () => {
+                        document.body.classList.add("swal2-open"); // Disable sidebar interactions
+                    },
+                    didClose: () => {
+                        document.body.classList.remove("swal2-open"); // Re-enable sidebar interactions
+                    }
                 });
             @endif
         });

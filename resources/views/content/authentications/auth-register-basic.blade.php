@@ -4,6 +4,7 @@
 
 @section('page-style')
     <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/page-auth.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 @endsection
 
 @section('content')
@@ -16,11 +17,11 @@
                         <!-- Logo -->
                         <div class="app-brand justify-content-center">
                             <a href="{{ url('/') }}" class="app-brand-link gap-2">
-                                <span class="app-brand-logo demo">@include('_partials.macros', [
-                                    'width' => 25,
-                                    'withbg' => 'var(--bs-primary)',
-                                ])</span>
-                                <span class="app-brand-text demo text-body fw-bold">
+                              <span class="app-brand-logo demo">
+                                <img src="{{ asset('assets/img/logo_main.png') }}" alt="Brand Logo" width="40"
+                                    height="35">
+                            </span>
+                                <span class="app-brand-text demo text-body fw-bold" style="text-transform: capitalize;">
                                     {{ config('variables.templateName') }}
                                 </span>
                             </a>

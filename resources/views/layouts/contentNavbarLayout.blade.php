@@ -20,12 +20,12 @@
     <div class="layout-wrapper layout-content-navbar {{ $isMenu ? '' : 'layout-without-menu' }}">
         <div class="layout-container">
 
-            @if ($isMenu)
-                @include('layouts/sections/menu/verticalMenu')
-            @endif
-
             <!-- Layout page -->
             <div class="layout-page">
+
+                @if ($isMenu)
+                    @include('layouts/sections/menu/verticalMenu')
+                @endif
                 <!-- BEGIN: Navbar-->
                 @if ($isNavbar)
                     @include('layouts/sections/navbar/navbar')

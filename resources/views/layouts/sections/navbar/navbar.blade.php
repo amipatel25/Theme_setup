@@ -17,8 +17,11 @@
 @if (isset($navbarFull))
     <div class="navbar-brand app-brand demo d-none d-xl-flex py-0 me-4">
         <a href="{{ url('/') }}" class="app-brand-link gap-2">
-            <span class="app-brand-logo demo">@include('_partials.macros', ['width' => 25, 'withbg' => 'var(--bs-primary)'])</span>
-            <span class="app-brand-text demo menu-text fw-bold">{{ config('variables.templateName') }}</span>
+          <span class="app-brand-logo demo">
+            <img src="{{ asset('assets/img/logo_main.png') }}" alt="Brand Logo" width="40"
+                height="35">
+        </span>
+            <span class="app-brand-text demo menu-text fw-bold" style="text-transform: capitalize;">{{ config('variables.templateName') }}</span>
         </a>
     </div>
 @endif
@@ -47,7 +50,7 @@
 
         <!-- GitHub Button -->
         <li class="nav-item lh-1 me-3">
-            <a class="github-button" href="https://github.com/themeselection/sneat-html-laravel-admin-template-free"
+            <a class="github-button" href="#"
                 data-icon="octicon-star" data-size="large" data-show-count="true"
                 aria-label="Star themeselection/sneat-html-laravel-admin-template-free on GitHub">Star</a>
         </li>

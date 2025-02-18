@@ -68,7 +68,7 @@ class RegisterBasic extends Controller
     $email = $request->email;
 
     // Prevent frequent OTP requests (2 minutes delay)
-    if (session('otp_sent_at') && now()->diffInSeconds(session('otp_sent_at')) < 60) {
+    if (session('otp_sent_at') && now()->diffInSeconds(session('otp_sent_at')) < 30) {
       return response()->json(['success' => false, 'message' => 'Please wait before requesting another OTP.']);
     }
 

@@ -7,16 +7,16 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>@yield('title') | Sneat - Laravel Admin Template</title>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- Set favicon using the logo image -->
+    <link rel="icon" href="{{ asset('assets/img/logo_main.png') }}" type="image/png">
+    <title>@yield('title')</title>
 
-    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.ico') }}" />
     <link id="dark-theme-css" rel="stylesheet" href="#" disabled>
-
     @include('layouts/sections/styles')
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        // Immediately apply the theme before the page loads
+        (function() {
             let savedTheme = localStorage.getItem("color-scheme") || "light";
             let savedDirection = localStorage.getItem("direction") || "ltr";
             const htmlTag = document.documentElement;
@@ -42,217 +42,240 @@
             } else {
                 htmlTag.setAttribute("dir", "ltr");
             }
-        });
+        })();
     </script>
 
-    <style>
-        /* Floating Customizer Button */
-        .customizer-btn {
-            position: fixed;
-            bottom: 50px;
-            right: 20px;
-            background: #007bff;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 22px;
-            cursor: pointer;
-            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease-in-out;
-            z-index: 1001;
-        }
+<style>
+  /* Floating Customizer Button */
+  .customizer-btn {
+      position: fixed;
+      bottom: 50px;
+      right: 20px;
+      background: #696cff;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 22px;
+      cursor: pointer;
+      box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease-in-out;
+      z-index: 1001;
+  }
 
-        .customizer-btn:hover {
-            background: #0056b3;
-            transform: rotate(90deg);
-        }
+  .customizer-btn:hover {
+      transform: rotate(90deg);
+  }
 
-        /* Sidebar Customizer */
-        .customizer-sidebar {
-            position: fixed;
-            top: 0;
-            right: -350px;
-            width: 350px;
-            height: 100%;
-            background: white;
-            box-shadow: -4px 0px 10px rgba(0, 0, 0, 0.2);
-            transition: right 0.3s ease-in-out;
-            padding: 20px;
-            z-index: 1002;
-            overflow-y: auto;
-            border-left: 3px solid #007bff;
-            font-family: 'Arial', sans-serif;
-        }
+  /* Sidebar Customizer */
+  .customizer-sidebar {
+      position: fixed;
+      top: 0;
+      right: -450px;
+      width: 450px;
+      height: 100%;
+      background: white;
+      box-shadow: -4px 0px 10px rgba(0, 0, 0, 0.2);
+      transition: right 0.3s ease-in-out;
+      padding: 20px;
+      z-index: 1002;
+      overflow-y: auto;
+      border-left: 3px solid #696cff;
+      font-family: 'Arial', sans-serif;
+  }
 
-        .customizer-sidebar.active {
-            right: 0;
-        }
+  .customizer-sidebar.active {
+      right: 0;
+  }
 
-        .customizer-sidebar.dark-mode {
-            background-color: #2c2c2c;
-            /* Dark background */
-            color: white;
-            /* Light text */
-        }
+  /* Dark Mode for the Customizer */
+  html.dark-style .customizer-sidebar {
+      background-color: #2c2c2c;
+      color: white;
+      border-left: 3px solid #696cff;
+  }
 
-        .customizer-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 10px;
-        }
+  html.dark-style .customizer-header h3,
+  html.dark-style .customizer-header .description,
+  html.dark-style .section h4 {
+      color: white;
+  }
 
-        .customizer-header h3 {
-            font-size: 16px;
-            font-weight: 600;
-        }
+  html.dark-style .option-btn {
+      background-color: black;
+      color: #696cff;
+      border: 2px solid #696cff;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+      font-size: 14px;
+      text-align: center;
+      padding: 10px 15px;
+      flex: 1;
+  }
 
-        #customizer-close {
-            background: none;
-            border: none;
-            font-size: 18px;
-            cursor: pointer;
-        }
+  html.dark-style .option-btn.active {
+      background-color: #696cff;
+      color: white;
+  }
 
-        /* Sections */
-        .section {
-            margin-top: 20px;
-        }
+  html.dark-style .option-btn:hover {
+      background-color: #4e52c1;
+      color: white;
+  }
 
-        .section h4 {
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #333;
-        }
+  html.dark-style #reset-btn {
+      background-color: #696cff;
+      color: white;
+  }
 
-        /* Button Group Styling */
-        .options {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
+  html.dark-style #reset-btn:hover {
+      background-color: #4e52c1;
+  }
 
-        .option-btn {
-            flex: 1;
-            padding: 10px 15px;
-            border: 2px solid #007bff;
-            background-color: white;
-            color: #007bff;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s ease-in-out;
-            font-size: 14px;
-            text-align: center;
-        }
+  /* Customizer Header */
+  .customizer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+      text-align: left;
+  }
 
-        .option-btn.active {
-            background-color: #007bff;
-            color: white;
-            border-color: #007bff;
-        }
+  .customizer-header h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 0;
+      text-align: center;
+      width: 100%;
+  }
 
-        .option-btn:hover {
-            background-color: #0056b3;
-            color: white;
-            border-color: #0056b3;
-        }
+  .customizer-header .description {
+      font-size: 14px;
+      color: #666;
+      text-align: center;
+  }
 
-        /* Reset Button */
-        #reset-btn {
-            width: 100%;
-            margin-top: 20px;
-            padding: 10px;
-            border: none;
-            background: #007bff;
-            color: white;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: bold;
-        }
+  html.dark-style .customizer-header .description {
+      color: white;
+  }
 
-        #reset-btn:hover {
-            background: #0056b3;
-        }
+  #customizer-close {
+      background: none;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      color: #696cff;
+  }
 
-        .customizer-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1040;
-            /* Lower than the navbar */
-            display: none;
-        }
+  /* Customizer Sections */
+  .section {
+      margin-top: 20px;
+  }
 
-        .customizer-sidebar {
-            position: fixed;
-            top: 0;
-            right: -350px;
-            width: 350px;
-            height: 100%;
-            background: white;
-            box-shadow: -4px 0px 10px rgba(0, 0, 0, 0.2);
-            transition: right 0.3s ease-in-out;
-            padding: 20px;
-            z-index: 1050;
-            /* Higher than the navbar */
-            overflow-y: auto;
-            border-left: 3px solid #007bff;
-            font-family: 'Arial', sans-serif;
-        }
+  .section h4 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #333;
+  }
 
-        .customizer-sidebar.active {
-            right: 0;
-        }
+  html.dark-style .section h4 {
+      color: white;
+  }
 
-        /* Add dark mode for sidebar */
-        .customizer-sidebar.dark-mode {
-            background-color: #2c2c2c;
-            color: white;
-        }
+  /* Options Styling */
+  .options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+  }
 
-        /* Prevent navbar and content interaction when the customizer is open */
-        .swal2-open .layout-menu,
-        .swal2-open .layout-overlay {
-            pointer-events: none !important;
-        }
+  .option-btn {
+      flex: 1;
+      padding: 10px 15px;
+      border: 2px solid #696cff;
+      background-color: white;
+      color: #696cff;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+      font-size: 14px;
+      text-align: center;
+  }
 
-        /* Prevent overlay issues, making sure the customizer overlay takes precedence */
-        .layout-page {
-            z-index: 1;
-        }
-    </style>
+  .option-btn.active {
+      background-color: #696cff;
+      color: white;
+  }
+
+  .option-btn:hover {
+      background-color: #696cff;
+      color: white;
+      border-color: #696cff;
+  }
+
+  /* Reset Button */
+  #reset-btn {
+      width: 100%;
+      margin-top: 20px;
+      padding: 10px;
+      border: none;
+      background: #696cff;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+  }
+
+  #reset-btn:hover {
+      background: #4e52c1;
+  }
+
+  /* Customizer Overlay */
+  .customizer-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1040;
+      display: none;
+  }
+
+  /* Ensure layout stays behind the customizer */
+  .layout-page {
+      z-index: 1;
+  }
+</style>
+
+
     @include('layouts/sections/scriptsIncludes')
 </head>
 
 <body>
     @yield('layoutContent')
 
-    <!-- Floating Gear Icon for Customizer -->
     <button id="customizer-toggle" class="customizer-btn">
         <i class="fas fa-cog"></i>
     </button>
 
-    <!-- Sidebar Customizer -->
     <div id="customizer-sidebar" class="customizer-sidebar">
         <div class="customizer-header">
             <h3>TEMPLATE CUSTOMIZER</h3>
             <button id="customizer-close"><i class="fas fa-times"></i></button>
         </div>
+        <div class="description">
+            <p>Set preferences that will be saved for your live preview demonstration.</p>
+        </div>
 
-        <p>Set preferences that will be saved for your live preview demonstration.</p>
-
-        <!-- Color Scheme -->
         <div class="section">
             <h4>Color Scheme</h4>
             <div class="options">
@@ -268,7 +291,6 @@
             </div>
         </div>
 
-        <!-- Direction -->
         <div class="section">
             <h4>Direction</h4>
             <div class="options">
@@ -277,14 +299,11 @@
             </div>
         </div>
 
-        <!-- Reset Button -->
         <button id="reset-btn">🔄 Reset Settings</button>
     </div>
 
-    <!-- Overlay -->
     <div id="customizer-overlay" class="customizer-overlay"></div>
 
-    <!-- JavaScript for Sidebar Customizer -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const customizerToggle = document.getElementById("customizer-toggle");
@@ -322,59 +341,28 @@
                 });
             });
 
-            // Open Sidebar
             customizerToggle.addEventListener("click", () => {
                 customizerSidebar.classList.add("active");
                 overlay.classList.add("active");
             });
 
-            // Close Sidebar
             customizerClose.addEventListener("click", () => {
                 customizerSidebar.classList.remove("active");
                 overlay.classList.remove("active");
             });
 
-            overlay.addEventListener("click", () => {
+            overlay.addEventListener("cl696cffick", () => {
                 customizerSidebar.classList.remove("active");
                 overlay.classList.remove("active");
             });
 
-            // Reset Button
             resetBtn.addEventListener("click", () => {
                 localStorage.clear();
                 location.reload();
             });
 
-            // Load Saved Settings
             setActive(themeButtons, localStorage.getItem("color-scheme") || "light");
             setActive(dirButtons, localStorage.getItem("direction") || "ltr");
-
-            // Apply theme (light or dark) and direction (LTR or RTL) when the page loads
-            let savedTheme = localStorage.getItem("color-scheme") || "light";
-            let savedDirection = localStorage.getItem("direction") || "ltr";
-            const htmlTag = document.documentElement;
-            const darkThemeCSS = document.getElementById("dark-theme-css");
-
-            htmlTag.classList.remove("light-style", "dark-style");
-            htmlTag.setAttribute("dir", savedDirection);
-
-            if (savedTheme === "dark") {
-                htmlTag.classList.add("dark-style");
-                darkThemeCSS.setAttribute("href", "/assets/css/dark.css");
-                darkThemeCSS.removeAttribute("disabled");
-                customizerSidebar.classList.add("dark-mode");
-            } else {
-                htmlTag.classList.add("light-style");
-                darkThemeCSS.setAttribute("href", "#");
-                darkThemeCSS.setAttribute("disabled", "true");
-                customizerSidebar.classList.remove("dark-mode");
-            }
-
-            if (savedDirection === "rtl") {
-                htmlTag.setAttribute("dir", "rtl");
-            } else {
-                htmlTag.setAttribute("dir", "ltr");
-            }
         });
     </script>
 

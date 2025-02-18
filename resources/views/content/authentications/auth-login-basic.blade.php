@@ -4,6 +4,7 @@
 
 @section('page-style')
     <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/page-auth.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 @endsection
 
 @section('content')
@@ -15,18 +16,17 @@
                         <div class="app-brand justify-content-center">
                             <a href="{{ url('/') }}" class="app-brand-link gap-2">
                                 <span class="app-brand-logo demo">
-                                    @include('_partials.macros', [
-                                        'width' => 25,
-                                        'withbg' => 'var(--bs-primary)',
-                                    ])
+                                    <img src="{{ asset('assets/img/logo_main.png') }}" alt="Brand Logo" width="40"
+                                        height="35">
                                 </span>
-                                <span class="app-brand-text demo text-body fw-bold">
+                                <span class="app-brand-text demo text-body fw-bold" style="text-transform: capitalize;">
                                     {{ config('variables.templateName') }}
                                 </span>
                             </a>
                         </div>
 
-                        <h4 class="mb-2">Welcome to {{ config('variables.templateName') }}! 👋</h4>
+                        <h4 class="mb-2" style="text-transform: capitalize;">Welcome to
+                            {{ config('variables.templateName') }}! 👋</h4>
                         <p class="mb-4">Please sign in to your account and start the adventure</p>
 
                         <!-- ✅ SweetAlert2 Success Message -->
