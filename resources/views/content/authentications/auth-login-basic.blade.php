@@ -16,7 +16,7 @@
                         <div class="app-brand justify-content-center">
                             <a href="{{ url('/') }}" class="app-brand-link gap-2">
                                 <span class="app-brand-logo demo">
-                                    <img src="{{ asset('assets/img/logo_main.png') }}" alt="Brand Logo" width="40"
+                                    <img src="{{ asset('assets/img/icon.png') }}" alt="Brand Logo" width="40"
                                         height="35">
                                 </span>
                                 <span class="app-brand-text demo text-body fw-bold" style="text-transform: capitalize;">

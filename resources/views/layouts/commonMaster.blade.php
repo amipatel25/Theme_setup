@@ -8,7 +8,7 @@
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
     <!-- Set favicon using the logo image -->
-    <link rel="icon" href="{{ asset('assets/img/logo_main.png') }}" type="image/png">
+    <link rel="icon" href="{{ asset('assets/img/icon.png') }}" type="image/png">
     <title>@yield('title')</title>
 
     <link id="dark-theme-css" rel="stylesheet" href="#" disabled>

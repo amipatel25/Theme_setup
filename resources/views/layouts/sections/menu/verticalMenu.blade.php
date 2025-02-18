@@ -24,10 +24,15 @@
             transition: transform 0.3s ease-in-out;
         }
 
+
+
         #layout-menu .menu-item.active .menu-link,
+        #layout-menu .menu-item:hover,
         #layout-menu .menu-item:has(.menu-item.active) {
             background-color: #00000014 !important;
             color: #ffffff !important;
+            border-radius: .375rem;
+            margin-left: 10px;
         }
 
         /* Sidebar Background Color when Success Message is Shown */
@@ -80,7 +85,7 @@
         <div class="app-brand demo">
             <a href="{{ url('/') }}" class="app-brand-link">
                 <span class="app-brand-logo demo" style="margin-left: 0;">
-                    <img src="{{ asset('assets/img/logo_main.png') }}" alt="Brand Logo" width="40" height="35">
+                    <img src="{{ asset('assets/img/icon.png') }}" alt="Brand Logo" width="40" height="35">
                 </span>
 
                 <span class="app-brand-text demo menu-text fw-bold ms-2" style="text-transform: capitalize;">

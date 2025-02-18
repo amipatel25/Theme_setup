@@ -18,7 +18,7 @@
     <div class="navbar-brand app-brand demo d-none d-xl-flex py-0 me-4">
         <a href="{{ url('/') }}" class="app-brand-link gap-2">
           <span class="app-brand-logo demo">
-            <img src="{{ asset('assets/img/logo_main.png') }}" alt="Brand Logo" width="40"
+            <img src="{{ asset('assets/img/icon.png') }}" alt="Brand Logo" width="40"
                 height="35">
         </span>
             <span class="app-brand-text demo menu-text fw-bold" style="text-transform: capitalize;">{{ config('variables.templateName') }}</span>
