@@ -26,7 +26,7 @@
 
         #layout-menu .menu-item.active .menu-link,
         #layout-menu .menu-item:has(.menu-item.active) {
-            background-color: #f1f3fd !important;
+            background-color: #00000014 !important;
             color: #ffffff !important;
         }
 
